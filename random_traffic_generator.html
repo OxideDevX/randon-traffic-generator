@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+
+ <style>
+ <!--
+  h1 {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 2em;
+   font-weight: bold;
+   text-align: center;
+  }
+  p {text-align: justify; }
+ -->
+ </style>
+</head>
+<body>
+ <noscript>
+  <p>Your browser desn't support JavaScript or JavaScript is turned off in setting you browser. Please enable JavaScript, this is neccessary for correct work of random traffic generator.</p>
+  <p>Ваш браузер не поддерживает JavaScript или поддержка JavaScript отключена в настройках вашего браузера. Пожалуйста, включите поддержку JavaScript - она требуется дла работы генератора случайного трафика</p>
+ </noscript>
+ Language / язык:
+ <select id='langselect' onChange="onChg(this);" disabled="disabled">
+   <option value="en" selected="selected" id="engopt">English</option>
+   <option value="ru">Русский</option>
+ </select>
+ <h1 id="hh1">The Random Traffic Generator</h1>
+ <p id="rti">Random time interval between requests will be:</p>
+
+ <form id="form">
+  <span id="s1">from</span> <input type="number" value="10" min="0" name="min" id="min" onChange="onChg(this);" disabled="disabled" /> <span id="s2">to</span> <input type="number" value="20" min="1" name="max" id="max" onChange="onChg(this);" disabled="disabled" /> <span id="s3">seconds</span>.<br />
+  <span id="s4">URLs for random HTTP-requests:</span><br />
+  <textarea id="urlarea" cols="80" rows="10" disabled="disabled">
+https://www.bing.com/search?q=$R
+https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=0&rsv_idx=1&tn=baidu&wd=$R
+https://www.google.com/search?q=$R
+https://en.wikipedia.org/wiki/Special:Random
+https://duckduckgo.com/search?q=$R
+https://www.youtube.com/results?search_query=$R
+https://search.yahoo.com/search?p=$R
+https://www.qwant.com/?l=en&q=$R&t=web
+https://www.ecosia.org/search?method=index&q=$R
+https://en.uptodown.com/android/search$R
+https://en.uptodown.com/windows/search$R
+https://www.facebook.com/$R
+https://www.reddit.com/search/?q=$R
+https://www.blockchain.com/eth/block/$R
+https://www.blockchain.com/ru/btc/block/$R
+https://search.aol.com/aol/search?q=$R&rp=&s_chn=prt_bon&s_it=comsearch
+https://www.politico.com/news/2022/08/28/q?q=$R
+https://www.args.me/search.html?query=$R
+https://chess-results.com/tnr253530.aspx?lan=1&art=9&snr=$R
+https://scikit-learn.org/stable/search.html?q=$R
+https://twitter.com/$R
+https://www.istockphoto.com/ru/search/2/image?family=creative&phrase=$R
+https://www.istockphoto.com/ru/search/2/film?phrase=$R
+https://www.istockphoto.com/ru/search/2/image?family=creative&mediatype=illustration&assetfiletype=eps&phrase=$R
+https://www.midomi.com/TextSearchResults?term=$R
+https://ru.wikipedia.org/wiki/$R
+https://rue.wikipedia.org/wiki/$R
+https://pubmed.ncbi.nlm.nih.gov/$R/
+https://live365.com/listen/search?query=$R
+https://www.ccc.de/de/search?search_term=$R&x=14&y=1
+https://www.mayoclinic.org/search/search-results?q=$R
+https://search.visymo.com/wsa?q=$R&locale=en_US&vid=369fc4b4-2692-4f8b-8bcb-fb504616728b&ste=HY29asMwFEbfRosJRJIr2YMGJzXE0AxpS6DT5VaSZRUjpfppaJ--bpczHM7H96lqcjaURmOyjV598LrBmosPRHujqORCyJaylhPMm_jyGX4QsoM9I8YqTcJdOYJasY53e4J_Iy571knxIDdREs6z15BjTdpuqdtejBqHCadLfD8u5ym2r7zMKe0u0_X5cJXHhZ127puOw_lteBmG0T199PAIh_tIdLJYrAEsigpBpWS9oCQm73yAFGux6p9g7Ix1LZAtJr3AisH44OCGzv4C
+https://www.flightradar24.com/24.42,117.98/$R
+https://github.com/search?q=$R
+https://www.sas.com/it_it/search.html?q=$R
+https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=$R&fenlei=256&rsv_pq=edce0ec50004e1cb&rsv_t=e556MpkTqfVCZ974gUAd67w3ONxOED8Du4LT8YCKnNh9xAGroV1GbYy4bb8&rqlang=cn&rsv_dl=ib&rsv_enter=1&rsv_sug3=4&rsv_sug2=0&rsv_btype=i&inputT=506&rsv_sug4=1238&rsv_jmp=fail
+https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&ie=utf-8&dyTabStr=MCwyLDQsMSwzLDYsNSw3LDgsOQ%3D%3D&word=$R
+https://tieba.baidu.com/f?kw=$R&t=4&dyTabStr=MCwyLDQsMSwzLDYsNSw3LDgsOQ%3D%3D
+https://support.mozilla.org/ru/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=support#search$R
+https://www.similarweb.com/ru/search/?q=$R
+</textarea><br />
+  <b>$R</b> <span id="s5">will be replaced with a random number between</span> <input type="number" value="77" name="rndmin" id="rndmin" onChange="onChg(this);" disabled="disabled" /> <span id="s6">and</span> <input type="number" value="7777" name="rndmax" id="rndmax" onChange="onChg(this);" disabled="disabled" />
+  <br />
+  <span id="s7">Number or frames for streams (HTTP-connections):</span> <input type="number" value="3" min="1" name="nstreams" id="nstreams" onChange="onChg(this);" disabled="disabled" /><input type="checkbox" name="visframes" id="visframes" value="off"	 onChange="onChg(this)" disabled="disabled" /><label for="visframes" id="lbl">visible frames</label>  
+  <br />
+  <input type="button" value="START" onClick="startit();" style="background: green; color: yellow;" id="startbutt" disabled="disabled" />
+  <input type="button" value="STOP" onClick="stopit();" style="background: red; color: yellow;" id="stopbutt" disabled="disabled" />
+  <input type="button" value="REFRECH(RELOAD)" onClick="reload_page();" id="reloadbutt" disabled="disabled" />
+ </form>
+ <br />
+ <br />
+ <div id="foriframes"></div>
+<script>
+
+var rqrmin=77;
+var rqrmax=7777;
+var minint=10000;
+var maxint=20000;
+var tt;
+var reqon=false;
+var streams=3;
+var urls;
+var visstr='style="display: none;"';
+var loclang= { 
+ ru:
+  [['hh1','innerHTML','Генератор случайного трафика'],
+   ['rti','innerHTML','Интервал времени между запросами будет случайный в пределах'],
+   ['s1','innerHTML','от'],
+   ['s2','innerHTML','до'],
+   ['s3','innerHTML','секунд'],
+   ['s4','innerHTML','Будут случайно опрашиваться следующие URL-адреса:'],
+   ['s5','innerHTML','будет заменено на случайное целое число в диапазоне между'],
+   ['s6','innerHTML','и'],
+   ['s7','innerHTML','Количество фреймов для HTTP-соединений:'],
+   ['lbl','innerHTML','показывать фреймы на данной странице(не рекомендуеться на слабых ПК)'],
+   ['startbutt','value','ПУСК'],
+   ['stopbutt','value','СТОП'],
+   ['reloadbutt','value','Обновить страницу(сброс страницы)'],
+  ] 
+};
+
+function IR(minr, maxr) { return( Math.floor( Math.random()*(maxr-minr+1) ) + minr); }
+function EnaObj() {
+ var i=0;
+ for (i=0; i<arguments.length; i++) 
+  document.getElementById(arguments[i]).disabled=false;
+}
+function EnaAllObj(excid) {
+ var i=0;
+ for (i=0; i<document.all.length; i++)
+  if (document.all[i].disabled && document.all[i].id!=excid) document.all[i].disabled=false;
+}
+
+function DisObj() {
+ var i=0;
+ for (i=0; i<arguments.length; i++) document.getElementById(arguments[i]).disabled=true;
+}
+
+function req() {
+ if (reqon) {
+  var rnu=IR(0,urls.length-1);
+  var ns=IR(0,streams-1);
+  window.frames[ns].location.replace( urls[rnu].replace('$R', IR(rqrmin,rqrmax)) );
+  delete tt; 
+  var tt= setTimeout(req, IR(minint, maxint) );
+ }
+}
+
+function startit() {
+ var instr='';
+ var i=0;
+ for (i=0; i<streams; i++) instr+='<iframe sandbox="" '+visstr+' ></iframe>';
+ document.getElementById('foriframes').innerHTML=instr;
+ 
+ DisObj('nstreams','visframes','startbutt','urlarea');
+ EnaObj('stopbutt');
+
+ urls=document.getElementById('urlarea').value.split('\n');
+
+ minint=document.getElementById('min').value*1000;
+ maxint=document.getElementById('max').value*1000;
+ reqon=true;
+ req(); 
+}
+
+function stopit() {
+ EnaObj('startbutt','urlarea','nstreams','visframes');
+ DisObj('stopbutt');
+ reqon=false;
+ clearTimeout(tt);
+}
+
+function reload_page() {
+ stopit();
+
+ document.getElementById('nstreams').value=streams;
+ document.getElementById('visframes').checked = false;
+ document.getElementById('min').value="10";
+ document.getElementById('max').value="20";
+ document.getElementById('rndmin').value="77";
+ document.getElementById('rndmax').value="7777";
+ document.getElementById('engopt').selected=true;
+
+ location.reload();
+}
+
+function onChg(obj) {
+ switch (obj.id) {
+  case 'min':
+   if (obj.value*1000<=maxint) minint=obj.value*1000;
+   break;
+  case 'max':
+   if (obj.value*1000>=minint) maxint=obj.value*1000;
+   break;
+  case 'rndmin':
+   rqrmin=obj.value;
+   break;
+  case 'rndmax':
+   rqrmax=obj.value;
+   break;
+  case 'nstreams':
+   streams=obj.value;
+   break;
+  case 'visframes':
+   if (obj.checked) visstr=''; else visstr='style="display: none;"';
+   break;
+  case 'langselect':
+   if (obj.value=='en') reload_page(); 
+    else for (i=0; i<loclang.ru.length; i++) document.getElementById(loclang[obj.value][i][0])[loclang[obj.value][i][1]]=loclang[obj.value][i][2];
+ }
+}
+
+EnaAllObj('stopbutt');
+
+</script>
+
+</body>
+</html>
